@@ -11,9 +11,6 @@ class MockUserRepository:
         self.last_user_id = None
         self.last_balance = None
 
-    def get_user_by_id(self, user_id):
-        return (user_id, "meuUsername", "hashed_password")
-
     def edit_balance(self, user_id, new_balance):
         self.balance_updated = True
         self.last_user_id = user_id
@@ -36,9 +33,10 @@ def test_edit_balance_success():
 
 
 def test_edit_balance_user_not_found():
-    class MockUserRepositoryNotFound(MockUserRepository):
-        def get_user_by_id(self, user_id):
-            return None
+    class MockUserRepositoryNotFound:
+        def edit_balance(self, user_id, new_balance):
+            # Simula falha ao tentar atualizar usuário inexistente
+            raise Exception("User not found")
 
     balance_editor = BalanceEditor(MockUserRepositoryNotFound())
 
