@@ -59,3 +59,36 @@ The API uses **JWT (JSON Web Token)** for authentication.
 6. The token is sent in the `Authorization` header for protected requests  
 
 Example:
+
+Authorization: Bearer <your_token>
+
+
+This token allows the API to identify and authorize the user without storing session data on the server. :contentReference[oaicite:1]{index=1}
+
+---
+
+## Project Structure
+
+```bash
+project/
+├── app.py
+├── routes/
+├── models/
+├── database/
+├── auth/
+├── requirements.txt
+└── README.md
+
+Structure Description
+
+app.py: main application entry point
+
+routes/: API endpoints (auth, account, etc.)
+
+models/: database models (User, Account)
+
+database/: database configuration
+
+auth/: JWT authentication logic
+
+requirements.txt: project dependencies
